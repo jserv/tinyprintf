@@ -51,9 +51,5 @@ the goal of keeping the library lightweight. In most cases, the return value of
 
 ## License
 
-This library can be licensed either under MIT, BSD or LGPL license.
-
+This library can be redistributed either under [MIT License](LICENSE-MIT), [3-Claus BSD License](LICENSE-3BSD) or [LGPL 2.1](LICENSE-LGPL-2.1).
 Copyright (C) 2004,2012  Kustaa Nyholm
-Licenses: LGPL 2.1 or later (see `LICENSE.LGPL-2.1`)
-      or  BSD               (see `LICENSE.BSD`)
-      or  MIT               (see `LICENSE.MIT`)
