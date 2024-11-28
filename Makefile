@@ -1,33 +1,36 @@
-
-CPPFLAGS+=-I.
-CFLAGS+=-Wall -W -Wextra -O3 -g
+CPPFLAGS += -I.
+CFLAGS += -Wall -W -Wextra -O3 -g
 # RUNNER:=valgrind
 
-.PHONY: all test tests compiletests runtests clean
+.PHONY: all compiletests runtests clean
 
-all: tests
+all: compiletests
 
-test tests: compiletests runtests
+check: runtests
 
 runtests: test/printf test/sprintf
 	set -x ; for prg in $^ ; do $(RUNNER) $$prg || exit $$? ; done
 
-compiletests:
+compiletests: tinyprintf_minimal.o tinyprintf_only_tfp_printf.o tinyprintf_only_tfp_sprintf.o
+
+tinyprintf_minimal.o: tinyprintf.c
 	$(COMPILE.c) \
 	  -DTINYPRINTF_DEFINE_TFP_PRINTF=0 \
 	  -DTINYPRINTF_DEFINE_TFP_SPRINTF=0 \
 	  -DTINYPRINTF_OVERRIDE_LIBC=0 \
-	  -o tinyprintf_minimal.o tinyprintf.c
+	  -o $@ $<
+tinyprintf_only_tfp_printf.o: tinyprintf.c
 	$(COMPILE.c) \
 	  -DTINYPRINTF_DEFINE_TFP_PRINTF=1 \
 	  -DTINYPRINTF_DEFINE_TFP_SPRINTF=0 \
 	  -DTINYPRINTF_OVERRIDE_LIBC=0 \
-	  -o tinyprintf_only_tfp_printf.o tinyprintf.c
+	  -o $@ $<
+tinyprintf_only_tfp_sprintf.o: tinyprintf.c
 	$(COMPILE.c) \
 	  -DTINYPRINTF_DEFINE_TFP_PRINTF=0 \
 	  -DTINYPRINTF_DEFINE_TFP_SPRINTF=1 \
 	  -DTINYPRINTF_OVERRIDE_LIBC=0 \
-	  -o tinyprintf_only_tfp_sprintf.o tinyprintf.c
+	  -o $@ $<
 
 test/printf: test/printf.o tinyprintf.o
 	$(LINK.c) -o $@ $^
