@@ -75,16 +75,16 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * Implementation
  */
 struct param {
-    char lz:1;          /**<  Leading zeros */
-    char alt:1;         /**<  alternate form */
-    char uc:1;          /**<  Upper case (for base16 only) */
-    char align_left:1;  /**<  0 == align right (default), 1 == align left */
-    int width;          /**<  field width */
-    int prec;           /**<  precision */
-    char sign;          /**<  The sign to display (if any) */
-    unsigned int base;  /**<  number base (e.g.: 8, 10, 16) */
-    char *bf;           /**<  Buffer to output */
-    size_t bf_len;      /**<  Buffer length */
+    unsigned char lz:1;          /**<  Leading zeros */
+    unsigned char alt:1;         /**<  alternate form */
+    unsigned char uc:1;          /**<  Upper case (for base16 only) */
+    unsigned char align_left:1;  /**<  0 == align right (default), 1 == align left */
+    int width;                   /**<  field width */
+    int prec;                    /**<  precision */
+    char sign;                   /**<  The sign to display (if any) */
+    unsigned int base;           /**<  number base (e.g.: 8, 10, 16) */
+    char *bf;                    /**<  Buffer to output */
+    size_t bf_len;               /**<  Buffer length */
 };
 
 
