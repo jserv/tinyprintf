@@ -465,7 +465,7 @@ void tfp_format(void *putp, putcf putf, const char *fmt, va_list va)
             case 's':
             {
                 unsigned int prec = p.prec;
-                char *b;
+                const char *b;
                 p.bf = va_arg(va, char *);
                 b = p.bf;
                 while ((prec-- != 0) && *b++) {
